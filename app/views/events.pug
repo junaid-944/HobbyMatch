@@ -1,0 +1,29 @@
+html
+  head
+    title Events - HobbyMatch
+    style
+      include ../../static/style.css
+  body
+    .container
+      h1 All Events
+      .back-link: a(href="/dashboard") ← Back to Dashboard
+      
+      if events.length > 0
+        table.data-table
+          thead
+            tr
+              th Event ID
+              th Event Name
+              th Date
+              th Location
+              th Created By
+          tbody
+            each event in events
+              tr
+                td= event.event_id
+                td= event.event_name
+                td= event.event_date
+                td= event.location || 'N/A'
+                td= event.created_by || 'N/A'
+      else
+        p No events found.

@@ -1,0 +1,29 @@
+html
+  head
+    title Messages - HobbyMatch
+    style
+      include ../../static/style.css
+  body
+    .container
+      h1 All Messages
+      .back-link: a(href="/dashboard") ← Back to Dashboard
+      
+      if messages.length > 0
+        table.data-table
+          thead
+            tr
+              th Message ID
+              th From
+              th To
+              th Message
+              th Sent At
+          tbody
+            each msg in messages
+              tr
+                td= msg.message_id
+                td= msg.sender
+                td= msg.receiver
+                td= msg.message_text
+                td= msg.sent_at
+      else
+        p No messages found.

@@ -1,0 +1,23 @@
+html
+  head
+    title Hobbies - HobbyMatch
+    style
+      include ../../static/style.css
+  body
+    .container
+      h1 All Hobbies
+      .back-link: a(href="/dashboard") ← Back to Dashboard
+      
+      if hobbies.length > 0
+        table.data-table
+          thead
+            tr
+              th Hobby ID
+              th Hobby Name
+          tbody
+            each hobby in hobbies
+              tr
+                td= hobby.hobby_id
+                td= hobby.hobby_name
+      else
+        p No hobbies found.

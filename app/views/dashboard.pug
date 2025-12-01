@@ -1,0 +1,51 @@
+html
+  head
+    title HobbyMatch Dashboard
+    style
+      include ../../static/style.css
+  body
+    .container
+      h1 HobbyMatch Dashboard
+      p Welcome to HobbyMatch - Connect with people who share your hobbies!
+      
+      .stats-grid
+        .stat-card
+          h3 Users
+          p.count= usersCount
+          a(href="/users") View All Users
+        
+        .stat-card
+          h3 Hobbies
+          p.count= hobbiesCount
+          a(href="/hobbies") View All Hobbies
+        
+        .stat-card
+          h3 Matches
+          p.count= matchesCount
+          a(href="/matches") View All Matches
+        
+        .stat-card
+          h3 Messages
+          p.count= messagesCount
+          a(href="/messages") View All Messages
+        
+        .stat-card
+          h3 Reviews
+          p.count= reviewsCount
+          a(href="/reviews") View All Reviews
+        
+        .stat-card
+          h3 Events
+          p.count= eventsCount
+          a(href="/events") View All Events
+      
+      .navigation
+        h2 Quick Links
+        ul
+          li: a(href="/users") Users List
+          li: a(href="/user_hobbies") User Hobbies
+          li: a(href="/hobbies") All Hobbies
+          li: a(href="/matches") Matches
+          li: a(href="/messages") Messages
+          li: a(href="/reviews") Reviews
+          li: a(href="/events") Events

@@ -1,0 +1,25 @@
+html
+  head
+    title User Hobbies - HobbyMatch
+    style
+      include ../../static/style.css
+  body
+    .container
+      h1 User Hobbies
+      .back-link: a(href="/dashboard") ← Back to Dashboard
+      
+      if userHobbies.length > 0
+        table.data-table
+          thead
+            tr
+              th User ID
+              th Username
+              th Hobbies
+          tbody
+            each item in userHobbies
+              tr
+                td= item.user_id
+                td= item.username
+                td= item.hobbies || 'No hobbies'
+      else
+        p No user hobbies found.

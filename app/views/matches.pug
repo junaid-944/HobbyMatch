@@ -1,0 +1,27 @@
+html
+  head
+    title Matches - HobbyMatch
+    style
+      include ../../static/style.css
+  body
+    .container
+      h1 All Matches
+      .back-link: a(href="/dashboard") ← Back to Dashboard
+      
+      if matches.length > 0
+        table.data-table
+          thead
+            tr
+              th Match ID
+              th User 1
+              th User 2
+              th Matched On
+          tbody
+            each match in matches
+              tr
+                td= match.match_id
+                td= match.user1
+                td= match.user2
+                td= match.matched_on
+      else
+        p No matches found.

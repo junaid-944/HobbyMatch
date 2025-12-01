@@ -1,0 +1,31 @@
+html
+  head
+    title Reviews - HobbyMatch
+    style
+      include ../../static/style.css
+  body
+    .container
+      h1 All Reviews
+      .back-link: a(href="/dashboard") ← Back to Dashboard
+      
+      if reviews.length > 0
+        table.data-table
+          thead
+            tr
+              th Review ID
+              th Reviewer
+              th Reviewed User
+              th Rating
+              th Comments
+              th Created At
+          tbody
+            each review in reviews
+              tr
+                td= review.review_id
+                td= review.reviewer
+                td= review.reviewed_user
+                td= review.rating + '/5'
+                td= review.comments
+                td= review.created_at
+      else
+        p No reviews found.

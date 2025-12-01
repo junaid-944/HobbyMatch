@@ -1,0 +1,29 @@
+html
+  head
+    title Users - HobbyMatch
+    style
+      include ../../static/style.css
+  body
+    .container
+      h1 All Users
+      .back-link: a(href="/dashboard") ← Back to Dashboard
+      
+      if users.length > 0
+        table.data-table
+          thead
+            tr
+              th User ID
+              th Username
+              th Email
+              th Location
+              th Joined
+          tbody
+            each user in users
+              tr
+                td= user.user_id
+                td= user.username
+                td= user.email
+                td= user.location || 'N/A'
+                td= user.created_at
+      else
+        p No users found.
