@@ -1,29 +1,45 @@
 html
   head
     title Events - HobbyMatch
-    style
-      include ../../static/style.css
+    link(rel="stylesheet" href="/style.css")
   body
+    nav.navbar
+      .container-nav
+        h1.logo 🎯 HobbyMatch
+        .nav-links
+          a(href="/dashboard") Dashboard
+          a(href="/logout") Logout
+    
     .container
-      h1 All Events
-      .back-link: a(href="/dashboard") ← Back to Dashboard
+      .header-section
+        h1 All Events
+        a.btn.btn-primary(href="/events/add") 🎉 Create Event
+      
+      if message
+        .alert.alert-success= message
       
       if events.length > 0
-        table.data-table
-          thead
-            tr
-              th Event ID
-              th Event Name
-              th Date
-              th Location
-              th Created By
-          tbody
-            each event in events
+        .table-wrapper
+          table.data-table
+            thead
               tr
-                td= event.event_id
-                td= event.event_name
-                td= event.event_date
-                td= event.location || 'N/A'
-                td= event.created_by || 'N/A'
+                th Event Name
+                th Date
+                th Location
+                th Created By
+                th Actions
+            tbody
+              each event in events
+                tr
+                  td= event.event_name
+                  td= new Date(event.event_date).toLocaleDateString()
+                  td= event.location || 'N/A'
+                  td= event.created_by || 'N/A'
+                  td
+                    .action-buttons
+                      a.btn.btn-edit(href="/events/edit/" + event.event_id) Edit
+                      a.btn.btn-delete(href="/events/delete/" + event.event_id, onclick="return confirm('Delete this event?')") Delete
       else
-        p No events found.
+        .no-data
+          p No events found.
+          a(href="/events/add") Create the first event

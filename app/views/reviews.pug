@@ -1,31 +1,46 @@
 html
   head
     title Reviews - HobbyMatch
-    style
-      include ../../static/style.css
+    link(rel="stylesheet" href="/style.css")
   body
+    nav.navbar
+      .container-nav
+        h1.logo 🎯 HobbyMatch
+        .nav-links
+          a(href="/dashboard") Dashboard
+          a(href="/logout") Logout
+    
     .container
-      h1 All Reviews
-      .back-link: a(href="/dashboard") ← Back to Dashboard
+      .header-section
+        h1 All Reviews
+        a.btn.btn-primary(href="/reviews/add") ⭐ Add Review
+      
+      if message
+        .alert.alert-success= message
       
       if reviews.length > 0
-        table.data-table
-          thead
-            tr
-              th Review ID
-              th Reviewer
-              th Reviewed User
-              th Rating
-              th Comments
-              th Created At
-          tbody
-            each review in reviews
+        .table-wrapper
+          table.data-table
+            thead
               tr
-                td= review.review_id
-                td= review.reviewer
-                td= review.reviewed_user
-                td= review.rating + '/5'
-                td= review.comments
-                td= review.created_at
+                th Reviewer
+                th Reviewed User
+                th Rating
+                th Comments
+                th Date
+                th Actions
+            tbody
+              each review in reviews
+                tr
+                  td= review.reviewer
+                  td= review.reviewed_user
+                  td= '⭐ ' + review.rating + '/5'
+                  td= review.comments ? review.comments.substring(0, 40) + '...' : 'N/A'
+                  td= new Date(review.created_at).toLocaleDateString()
+                  td
+                    .action-buttons
+                      a.btn.btn-delete(href="/reviews/delete/" + review.review_id, onclick="return confirm('Delete this review?')") Delete
       else
-        p No reviews found.
+        .no-data
+          p No reviews found.
+          a(href="/reviews/add") Write the first review

@@ -1,0 +1,41 @@
+html
+  head
+    title Send Message - HobbyMatch
+    link(rel="stylesheet" href="/style.css")
+  body
+    nav.navbar
+      .container-nav
+        h1.logo 🎯 HobbyMatch
+        .nav-links
+          a(href="/dashboard") Dashboard
+          a(href="/logout") Logout
+    
+    .container
+      .form-container
+        h1 Send Message
+        
+        if error
+          .alert.alert-error= error
+        
+        form(method="POST" action="/messages/add")
+          .form-group
+            label(for="sender_id") From
+            select#sender_id(name="sender_id" required)
+              option(value="") Select sender
+              each user in users
+                option(value=user.user_id)= user.username
+          
+          .form-group
+            label(for="receiver_id") To
+            select#receiver_id(name="receiver_id" required)
+              option(value="") Select receiver
+              each user in users
+                option(value=user.user_id)= user.username
+          
+          .form-group
+            label(for="message_text") Message
+            textarea#message_text(name="message_text" rows="5" required placeholder="Write your message here...")
+          
+          .button-group
+            button.btn.btn-primary(type="submit") Send Message
+            a.btn.btn-secondary(href="/messages") Cancel

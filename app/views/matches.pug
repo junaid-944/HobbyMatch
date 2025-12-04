@@ -1,27 +1,44 @@
 html
   head
     title Matches - HobbyMatch
-    style
-      include ../../static/style.css
+    link(rel="stylesheet" href="/style.css")
   body
+    nav.navbar
+      .container-nav
+        h1.logo 🎯 HobbyMatch
+        .nav-links
+          a(href="/dashboard") Dashboard
+          a(href="/logout") Logout
+    
     .container
-      h1 All Matches
-      .back-link: a(href="/dashboard") ← Back to Dashboard
+      .header-section
+        h1 All Matches
+        a.btn.btn-primary(href="/matches/add") ➕ Create New Match
+      
+      if message
+        .alert.alert-success= message
       
       if matches.length > 0
-        table.data-table
-          thead
-            tr
-              th Match ID
-              th User 1
-              th User 2
-              th Matched On
-          tbody
-            each match in matches
+        .table-wrapper
+          table.data-table
+            thead
               tr
-                td= match.match_id
-                td= match.user1
-                td= match.user2
-                td= match.matched_on
+                th Match ID
+                th User 1
+                th User 2
+                th Matched On
+                th Actions
+            tbody
+              each match in matches
+                tr
+                  td= match.match_id
+                  td= match.user1
+                  td= match.user2
+                  td= new Date(match.matched_on).toLocaleDateString()
+                  td
+                    .action-buttons
+                      a.btn.btn-delete(href="/matches/delete/" + match.match_id, onclick="return confirm('Delete this match?')") Delete
       else
-        p No matches found.
+        .no-data
+          p No matches found.
+          a(href="/matches/add") Create the first match

@@ -1,0 +1,27 @@
+html
+  head
+    title Add Hobby - HobbyMatch
+    link(rel="stylesheet" href="/style.css")
+  body
+    nav.navbar
+      .container-nav
+        h1.logo 🎯 HobbyMatch
+        .nav-links
+          a(href="/dashboard") Dashboard
+          a(href="/logout") Logout
+    
+    .container
+      .form-container
+        h1 Add New Hobby
+        
+        if error
+          .alert.alert-error= error
+        
+        form(method="POST" action="/hobbies/add")
+          .form-group
+            label(for="hobby_name") Hobby Name
+            input#hobby_name(type="text" name="hobby_name" required placeholder="e.g., Photography, Gaming, Cooking")
+          
+          .button-group
+            button.btn.btn-primary(type="submit") Add Hobby
+            a.btn.btn-secondary(href="/hobbies") Cancel

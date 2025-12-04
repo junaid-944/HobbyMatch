@@ -1,23 +1,48 @@
 html
   head
     title Hobbies - HobbyMatch
-    style
-      include ../../static/style.css
+    link(rel="stylesheet" href="/style.css")
   body
+    nav.navbar
+      .container-nav
+        h1.logo 🎯 HobbyMatch
+        .nav-links
+          a(href="/dashboard") Dashboard
+          a(href="/logout") Logout
+    
     .container
-      h1 All Hobbies
-      .back-link: a(href="/dashboard") ← Back to Dashboard
+      .header-section
+        h1 All Hobbies
+        a.btn.btn-primary(href="/hobbies/add") ➕ Add New Hobby
+      
+      .search-section
+        form(method="GET" action="/hobbies")
+          .search-box
+            input.search-input(type="text" name="search" placeholder="Search hobbies..." value=search)
+            button.btn.btn-small(type="submit") Search
+      
+      if message
+        .alert.alert-success= message
       
       if hobbies.length > 0
-        table.data-table
-          thead
-            tr
-              th Hobby ID
-              th Hobby Name
-          tbody
-            each hobby in hobbies
+        .table-wrapper
+          table.data-table
+            thead
               tr
-                td= hobby.hobby_id
-                td= hobby.hobby_name
+                th Hobby ID
+                th Hobby Name
+                th Actions
+            tbody
+              each hobby in hobbies
+                tr
+                  td= hobby.hobby_id
+                  td= hobby.hobby_name
+                  td
+                    .action-buttons
+                      a.btn.btn-edit(href="/hobbies/edit/" + hobby.hobby_id) Edit
+                      a.btn.btn-delete(href="/hobbies/delete/" + hobby.hobby_id, onclick="return confirm('Delete this hobby?')") Delete
       else
-        p No hobbies found.
+        .no-data
+          p No hobbies found.
+          a(href="/hobbies/add") Create the first hobby
+

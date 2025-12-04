@@ -30,7 +30,7 @@ CREATE TABLE `user_hobbies` (
   FOREIGN KEY (`hobby_id`) REFERENCES `hobbies`(`hobby_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Matches Table
+-- this is Matches Table 
 CREATE TABLE `matches` (
   `match_id` INT(11) NOT NULL AUTO_INCREMENT,
   `user1_id` INT(11) NOT NULL,

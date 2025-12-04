@@ -1,0 +1,37 @@
+html
+  head
+    title Create Match - HobbyMatch
+    link(rel="stylesheet" href="/style.css")
+  body
+    nav.navbar
+      .container-nav
+        h1.logo 🎯 HobbyMatch
+        .nav-links
+          a(href="/dashboard") Dashboard
+          a(href="/logout") Logout
+    
+    .container
+      .form-container
+        h1 Create New Match
+        
+        if error
+          .alert.alert-error= error
+        
+        form(method="POST" action="/matches/add")
+          .form-group
+            label(for="user1_id") User 1
+            select#user1_id(name="user1_id" required)
+              option(value="") Select a user
+              each user in users
+                option(value=user.user_id)= user.username
+          
+          .form-group
+            label(for="user2_id") User 2
+            select#user2_id(name="user2_id" required)
+              option(value="") Select a user
+              each user in users
+                option(value=user.user_id)= user.username
+          
+          .button-group
+            button.btn.btn-primary(type="submit") Create Match
+            a.btn.btn-secondary(href="/matches") Cancel

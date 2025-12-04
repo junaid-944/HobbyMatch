@@ -1,0 +1,35 @@
+html
+  head
+    title Edit User - HobbyMatch
+    link(rel="stylesheet" href="/style.css")
+  body
+    nav.navbar
+      .container-nav
+        h1.logo 🎯 HobbyMatch
+        .nav-links
+          a(href="/dashboard") Dashboard
+          a(href="/logout") Logout
+    
+    .container
+      .form-container
+        h1 Edit User
+        
+        if error
+          .alert.alert-error= error
+        
+        form(method="POST" action="/users/edit/" + user.user_id)
+          .form-group
+            label(for="username") Username
+            input#username(type="text" name="username" value=user.username required)
+          
+          .form-group
+            label(for="email") Email
+            input#email(type="email" name="email" value=user.email required)
+          
+          .form-group
+            label(for="location") Location
+            input#location(type="text" name="location" value=(user.location || '') placeholder="Enter city or region")
+          
+          .button-group
+            button.btn.btn-primary(type="submit") Update User
+            a.btn.btn-secondary(href="/users") Cancel

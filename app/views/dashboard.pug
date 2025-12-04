@@ -1,11 +1,17 @@
 html
   head
     title HobbyMatch Dashboard
-    style
-      include ../../static/style.css
+    link(rel="stylesheet" href="/style.css")
   body
+    nav.navbar
+      .container-nav
+        h1.logo 🎯 HobbyMatch
+        .nav-links
+          span Welcome, #{username}!
+          a(href="/logout") Logout
+    
     .container
-      h1 HobbyMatch Dashboard
+      h1 Dashboard
       p Welcome to HobbyMatch - Connect with people who share your hobbies!
       
       .stats-grid
@@ -42,10 +48,10 @@ html
       .navigation
         h2 Quick Links
         ul
-          li: a(href="/users") Users List
-          li: a(href="/user_hobbies") User Hobbies
-          li: a(href="/hobbies") All Hobbies
-          li: a(href="/matches") Matches
-          li: a(href="/messages") Messages
-          li: a(href="/reviews") Reviews
-          li: a(href="/events") Events
+          li: a(href="/users") 👥 Users List
+          li: a(href="/hobbies") 🎨 All Hobbies
+          li: a(href="/matches") 💕 Matches
+          li: a(href="/messages") 💬 Messages
+          li: a(href="/reviews") ⭐ Reviews
+          li: a(href="/events") 🎉 Events
+

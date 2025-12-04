@@ -1,0 +1,51 @@
+html
+  head
+    title Add Review - HobbyMatch
+    link(rel="stylesheet" href="/style.css")
+  body
+    nav.navbar
+      .container-nav
+        h1.logo 🎯 HobbyMatch
+        .nav-links
+          a(href="/dashboard") Dashboard
+          a(href="/logout") Logout
+    
+    .container
+      .form-container
+        h1 Add Review
+        
+        if error
+          .alert.alert-error= error
+        
+        form(method="POST" action="/reviews/add")
+          .form-group
+            label(for="reviewer_id") Your Name
+            select#reviewer_id(name="reviewer_id" required)
+              option(value="") Select reviewer
+              each user in users
+                option(value=user.user_id)= user.username
+          
+          .form-group
+            label(for="reviewed_user_id") Review User
+            select#reviewed_user_id(name="reviewed_user_id" required)
+              option(value="") Select user to review
+              each user in users
+                option(value=user.user_id)= user.username
+          
+          .form-group
+            label(for="rating") Rating
+            select#rating(name="rating" required)
+              option(value="") Select rating
+              option(value="1") ⭐ 1 - Poor
+              option(value="2") ⭐⭐ 2 - Fair
+              option(value="3") ⭐⭐⭐ 3 - Good
+              option(value="4") ⭐⭐⭐⭐ 4 - Very Good
+              option(value="5") ⭐⭐⭐⭐⭐ 5 - Excellent
+          
+          .form-group
+            label(for="comments") Comments
+            textarea#comments(name="comments" rows="4" placeholder="Write your review...")
+          
+          .button-group
+            button.btn.btn-primary(type="submit") Submit Review
+            a.btn.btn-secondary(href="/reviews") Cancel

@@ -1,0 +1,29 @@
+html
+  head
+    title Login - HobbyMatch
+    link(rel="stylesheet" href="/style.css")
+  body
+    .auth-container
+      .auth-box
+        h1 🔐 HobbyMatch Login
+        
+        if error
+          .alert.alert-error= error
+        
+        if message
+          .alert.alert-success= message
+        
+        form(method="POST" action="/login")
+          .form-group
+            label(for="username") Username
+            input#username(type="text" name="username" required)
+          
+          .form-group
+            label(for="password") Password
+            input#password(type="password" name="password" required)
+          
+          button.btn.btn-primary(type="submit") Login
+        
+        .auth-link
+          p Don't have an account? 
+            a(href="/signup") Sign up here

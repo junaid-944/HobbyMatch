@@ -1,0 +1,42 @@
+html
+  head
+    title Create Event - HobbyMatch
+    link(rel="stylesheet" href="/style.css")
+  body
+    nav.navbar
+      .container-nav
+        h1.logo 🎯 HobbyMatch
+        .nav-links
+          a(href="/dashboard") Dashboard
+          a(href="/logout") Logout
+    
+    .container
+      .form-container
+        h1 Create New Event
+        
+        if error
+          .alert.alert-error= error
+        
+        form(method="POST" action="/events/add")
+          .form-group
+            label(for="event_name") Event Name
+            input#event_name(type="text" name="event_name" required placeholder="e.g., Photography Meetup")
+          
+          .form-group
+            label(for="event_date") Event Date
+            input#event_date(type="date" name="event_date" required)
+          
+          .form-group
+            label(for="location") Location
+            input#location(type="text" name="location" placeholder="e.g., London, UK")
+          
+          .form-group
+            label(for="created_by") Created By
+            select#created_by(name="created_by" required)
+              option(value="") Select organizer
+              each user in users
+                option(value=user.user_id)= user.username
+          
+          .button-group
+            button.btn.btn-primary(type="submit") Create Event
+            a.btn.btn-secondary(href="/events") Cancel
