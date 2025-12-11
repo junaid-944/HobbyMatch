@@ -2,6 +2,7 @@
 
 ## Summary
 Brief instructions to run app with Node.js and to initialize a local MySQL database using XAMPP
+Entro Point is index.js
 
 ## Prerequisites
 - Node.js (v14+ recommended)
