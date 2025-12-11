@@ -21,7 +21,7 @@ CREATE TABLE `hobbies` (
   PRIMARY KEY (`hobby_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- User-Hobby Relationship
+-- User-Hobby Relationship Table
 CREATE TABLE `user_hobbies` (
   `user_id` INT(11) NOT NULL,
   `hobby_id` INT(11) NOT NULL,
